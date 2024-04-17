@@ -5,6 +5,7 @@ import dw.firstapp.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+// service는 로직이라고 보면 됨
 @Service
 public class EmployeeService {
     // 의존성 주입
