@@ -24,7 +24,7 @@ import org.springframework.boot.SpringApplication;
 public class Employee {
     
     // @Id : 이 값이 primary key 라고 지정해주는 거
-    // @GenerateValue : 순번이 어떻게 증가하는지 설정하는 거(autoIncrement)
+    // @GenerateValue : 순번이 어떻게 증가하는지 설정하는 거(autoIncrement와 완전 같은개념)
     // → strategy = GenerationType. 쓸때 오라클은 SEQUENCE 쓴다고 함 (여기서는 identity)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
