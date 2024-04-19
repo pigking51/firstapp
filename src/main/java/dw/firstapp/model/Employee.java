@@ -13,9 +13,9 @@ import org.springframework.boot.SpringApplication;
 // 비관계형 DB는 못씀
 // 비관계형 DB : 출발점이 객체지향언어(그렇기에 문제는 없음)
 // Object와 관계형 DB사이 중간을 매핑해주는 것(연결해주는 어떠한 기술)
-// JPA는 ORM중에 하나라고 할 수 있지만, 엄밀히 말하면 설계도같은 것이라고 함
+// JPA는 ORM중에 하나라고 할 수 있지만, 엄밀히 말하면 설계도(스펙이라고 부름)같은 것이라고 함
 // → 조금 더 구체적인 것(JPA는 기준가이드 정도라고 함), 자체적으로 여러기술가지고있음
-// 짝지어서 나오는 개념이 하이버레이트(hibernate)
+// 짝지어서 나오는 개념이 하이버레이트(hibernate) → 이것이 JPA에서 ORM을 말한다고 보면 됨
 // spring.jpa.hibernate.ddl-auto=update
 // → ddl-auto= update : 엔티티로 만든 어노테이션을 찾아서 생성을 자동으로 해주겠다
 

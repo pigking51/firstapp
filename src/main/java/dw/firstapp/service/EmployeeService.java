@@ -1,5 +1,6 @@
 package dw.firstapp.service;
 
+import dw.firstapp.exception.ResourceNotFoundException;
 import dw.firstapp.model.Employee;
 import dw.firstapp.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ public class EmployeeService {
         // → null을 주지 않는 구조가 됨(NullPointException오류 안뜸)
         if(employee.isEmpty()){
             // 예외처리
-            return null;
+            throw new ResourceNotFoundException("Employee", "ID", id);
         } else{
             return employee.get();
         }
@@ -50,14 +51,14 @@ public class EmployeeService {
             employeeRepository.save(employee1.get());
             return employee1.get();
         } else{
-            return null;
+            throw new ResourceNotFoundException("Employee", "ID", id);
         }
     }
 
     public Employee deleteEmployeeById(long id){
         Optional<Employee> employee2 = employeeRepository.findById(id);
         if(employee2.isEmpty()){
-            return null;
+            throw new ResourceNotFoundException("Employee", "ID", id);
         }else{
             employeeRepository.deleteById(id);
             return employee2.get();

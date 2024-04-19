@@ -3,6 +3,8 @@ package dw.firstapp.controller;
 import dw.firstapp.model.Employee;
 import dw.firstapp.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,37 +21,46 @@ public class EmployeeController {
     }
 
     @PostMapping("/api/employee")
-    public Employee saveEmployee(@RequestBody Employee employee){
+    public ResponseEntity<Employee> saveEmployee(@RequestBody Employee employee){
         // Service 코드 필요
-        return employeeService.saveEmployee(employee);
+        return new ResponseEntity<>(employeeService.saveEmployee(employee)
+                , HttpStatus.OK);
     }
 
     @GetMapping("api/employee")
-    public List<Employee> getAllEmployees(){
-        return employeeService.getAllEmployees();
+    public ResponseEntity<List<Employee>>  getAllEmployees(){
+       return new ResponseEntity<>(employeeService.getAllEmployees()
+        , HttpStatus.OK);
+
     }
 
     // DTO(DataTransferObject) : 유저한테 보내줘도 되는 타입으로 클래스를 새로 만드는것
     // → 엔티티와 비슷하지만 다름
+    
+    // 상태코드200(성공했을때의 코드) : 이거 만드려면 controller에 만든 메소드 타입에
+    // ResponseEntity<타입>으로 바꿔주고 return 값도 new ResponseEntity(기존리턴값,HttpStatus.OK) 넣어주면 됨
 
     @GetMapping("api/employee/{id}")
-    public Employee getEmployeeById(@PathVariable Long id){ // @PathVariable 뒤에 타입쓸때 대소문자 구분 안한다고 함
-        return employeeService.getEmployeeById(id);
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id){ // @PathVariable 뒤에 타입쓸때 대소문자 구분 안한다고 함
+        return new ResponseEntity<>(employeeService.getEmployeeById(id),
+                HttpStatus.OK);
     }
 
     // ↓ 특정 ID 검색해서 해당 내용 업데이트 or 신규추가(id값은 autoIncrement = @GenerateValue로 되어있기때문에 지정안하면 자동추가에 따라 추가하게되는것)
     //   → 한개의 튜플만 바꾸면 해당 email 업데이트 
     @PutMapping("api/employee/{id}")
-    public Employee updateEmployeeById(@PathVariable Long id,
+    public ResponseEntity<Employee> updateEmployeeById(@PathVariable Long id,
                                        @RequestBody Employee employee){
-        return employeeService.updateEmployeeById(id, employee);
+        return new ResponseEntity<>(employeeService.updateEmployeeById(id, employee),
+                HttpStatus.OK);
     }
     
     // ↓ 특정 ID에 해당되는 값 전체 삭제
 
     @DeleteMapping("api/employee/{id}")
-    public Employee deleteEmployeeById(@PathVariable long id){
-        return employeeService.deleteEmployeeById(id);
+    public ResponseEntity<Employee> deleteEmployeeById(@PathVariable long id){
+        return new ResponseEntity<>(employeeService.deleteEmployeeById(id),
+                HttpStatus.OK);
     }
 
 
